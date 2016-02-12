@@ -104,7 +104,10 @@ angular
       $scope.saveConfig = function(id) {
         $scope.config[id].$save()
           .then(function(res) {
-            console.log("authenticated", res)
+            console.log("authenticated", res);
+            if (KribleLoader && KribleLoader.reinitConfig) {
+              KribleLoader.reinitConfig(res.siteId);
+            }
           })
           .catch(function(req) {
             console.log("error saving obj", req.status)
