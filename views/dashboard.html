@@ -1,49 +1,10 @@
-<md-sidenav layout="column" class="md-sidenav-left md-whiteframe-z2" md-component-id="left" md-is-locked-open="$mdMedia('gt-md')">
-  <md-toolbar class=" md-hue-2">
-    <span flex></span>
-    <div layout="column" class="md-toolbar-tools-bottom inset">
-      <div>{{currentUser.email}}</div>
-    </div>
-  </md-toolbar>
-  <md-list>
-    <md-subheader>Your sites</md-subheader>
-    <md-item ng-repeat="site in sites">
-      <a href="#/site/{{site.id}}/config">
-        <md-item-content md-ink-ripple layout="row" layout-align="start center">
-          <div class="inset">
-            <ng-md-icon icon="{{site.status}}"></ng-md-icon>
-          </div>
-          <div class="inset">{{site.domain}}</div>
-        </md-item-content>
-      </a>
-        <md-divider></md-divider>
-    </md-item>
-    <md-subheader>Management</md-subheader>
-    <md-item ng-repeat="item in admin">
-      <a>
-        <md-item-content md-ink-ripple layout="row" layout-align="start center">
-          <div class="inset">
-            <ng-md-icon icon="{{item.icon}}"></ng-md-icon>
-          </div>
-          <div class="inset">{{item.title}}
-          </div>
-        </md-item-content>
-      </a>
-    </md-item>
-  </md-list>
-</md-sidenav>
 <div layout="column" class="relative" layout-fill role="main">
-  <!-- <md-button class="md-fab md-fab-bottom-right" aria-label="Add" ng-click="showAdd($event)">
-    <ng-md-icon icon="add"></ng-md-icon>
-  </md-button> -->
   <md-toolbar>
     <div class="md-toolbar-tools">
       <md-button ng-click="toggleSidenav('left')" hide-gt-md aria-label="Menu">
         <md-icon>menu</md-icon>
       </md-button>
-      <h3>
-            Dashboard
-          </h3>
+      <h3>Dashboard</h3>
       <span flex></span>
       <md-button aria-label="Search" ng-click="showSearch = !showSearch">
         <ng-md-icon icon="search"></ng-md-icon>

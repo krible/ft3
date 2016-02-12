@@ -4,11 +4,14 @@
     background-repeat: no-repeat;
     background-size: cover;
   }
+  #sign { margin-top: 100px; }
 </style>
+
+<ng-include src="'tilda/header.html'"></ng-include>
 
 <div layout="row" layout-align="center center" style="border:1px slid red;">
 
-<md-card flex="30" flex-md="50" flex-xs="70" flex-sm="90">
+<md-card id='sign' flex="30" flex-md="50" flex-xs="70" flex-sm="90">
  <md-card-content>
    <h2>Sign Up</h2>
    <form name="account">
