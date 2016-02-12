@@ -43,46 +43,49 @@
     </div>
 
   </md-toolbar>
-  <md-content flex md-scroll-y class="">
+
+
+  <md-content flex md-scroll-y ng-repeat="site in sites">
     <ui-view layout="column" layout-fill layout-padding>
       <div class="inset" hide-sm></div>
       <ng-switch on="data.selectedIndex" class="tabpanel-container">
         <div role="tabpanel" id="tab1-content" aria-labelledby="tab1" ng-switch-when="0" md-swipe-left="next()" md-swipe-right="previous()" layout="row" layout-align="center center">
           <md-card flex="50" flex-md="75" flex-xs="100" flex-sm="90">
             <md-card-content>
-              <h2>Edit widget settings</h2><br>
+              <h2>Edit widget settings for {{site.domain}}</h2><br>
 
                   <md-input-container class="md-block">
                     <label>Website domain name</label>
-                    <input md-maxlength="15" ng-model="site.domain">
+                    <input ng-model="site.domain">
+                    <div class="hint">Domain name where teleportator be work</div>
                   </md-input-container>
 
                   <md-input-container class="md-block">
                     <label>Button text</label>
-                    <input md-maxlength="15" ng-model="config.buttonText">
+                    <input md-maxlength="15" ng-model="config[$index].buttonText">
                   </md-input-container>
 
-                  <div flex label="Button color" md-color-picker random="true" open-on-input="true" ng-model="config.buttonColor"></div>
+                  <div flex label="Button color" md-color-picker random="true" open-on-input="true" ng-model="config[$index].buttonColor"></div>
 
-                  <div flex label="Text color" md-color-picker random="true" open-on-input="true" ng-model="config.textColor"></div>
+                  <div flex label="Text color" md-color-picker random="true" open-on-input="true" ng-model="config[$index].textColor"></div>
 
                   <md-input-container class="md-block">
                     <label>Widget width</label>
-                    <input ng-model="config.width">
+                    <input ng-model="config[$index].width">
                   </md-input-container>
 
                   <p>Position:</p><br>
-                  <md-radio-group ng-model="config.position">
+                  <md-radio-group ng-model="config[$index].position">
                     <md-radio-button value="left">Left</md-radio-button>
                     <md-radio-button value="right"> Right </md-radio-button>
                   </md-radio-group>
 
                   <md-input-container class="md-block">
                     <label>About text</label>
-                    <textarea ng-model="config.about" md-maxlength="150" rows="5" md-select-on-focus></textarea>
+                    <textarea ng-model="config[$index].about" md-maxlength="150" rows="5" md-select-on-focus></textarea>
                   </md-input-container>
 
-                  <md-button class="md-raised md-primary" ng-click="saveConfig()">Save</md-button>
+                  <md-button class="md-raised md-primary" ng-click="saveConfig($index)">Save</md-button>
             </md-card-content>
           </md-card>
         </div>

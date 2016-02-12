@@ -15,7 +15,7 @@ angular
     // Use a custom auth header instead of the default 'Authorization'
     LoopBackResourceProvider.setAuthHeader('X-Access-Token');
     // Change the URL where to access the LoopBack REST API server
-    LoopBackResourceProvider.setUrlBase('http://localhost:3000/api');
+    LoopBackResourceProvider.setUrlBase('http://ft3.herokuapp.com/api');
 
     $stateProvider
       .state('index', {
@@ -77,12 +77,12 @@ angular
           }
         }
       })
-      .state('site', {
-        url: '/site',
+      .state('dashboard', {
+        url: '/dashboard',
         views: {
           "authView": {
             templateUrl: "views/dashboard.html",
-            controller: 'SiteCtrl'
+            controller: 'DashboardCtrl'
           }
         },
         authenticate: true

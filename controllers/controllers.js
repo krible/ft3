@@ -22,7 +22,7 @@ angular
       Auth.login($scope.user.email, $scope.user.password)
         .then(function() {
           console.log('USER', Auth.currentUser);
-          $state.go('site');
+          $state.go('dashboard');
         });
     };
 
@@ -50,7 +50,7 @@ angular
           Auth.login($scope.user.email, $scope.user.password)
           .then(function() {
             console.log('USER', Auth.currentUser);
-            $state.go('site');
+            $state.go('dashboard');
           });
 
         });
@@ -74,83 +74,47 @@ angular
       Auth.login($scope.user.email, $scope.user.password)
         .then(function() {
           console.log('USER', Auth.currentUser);
-          $state.go('site');
+          $state.go('dashboard');
         });
     };
 
   }])
-  .controller('SiteCtrl', ['$scope', 'Auth', '$state', 'Account', function($scope, Auth, $state, Account) {
+  .controller('DashboardCtrl', ['$scope', 'Auth', '$state', 'Account', 'Site', 'Config', function($scope, Auth, $state, Account, Site, Config) {
 
     $scope.$watch(Auth.isLoggedIn, function() {
 
+      $scope.config = [];
+
       Account.sites($scope.currentUser, function(sites, res) {
         $scope.sites = sites;
+        for (var s in sites) {
+          //console.log('sites[s].id', s);
+          if (sites[s].id) {
+            Site.configs({id: sites[s].id},
+            function success(results) {
+              //console.log('cfg', results);
+              $scope.config.push(results[0]);
+              //console.log('CONF', $scope.config);
+            });
+          }
+        }
       });
+
+
+      $scope.saveConfig = function(id) {
+        $scope.config[id].$save()
+          .then(function(res) {
+            console.log("authenticated", res)
+          })
+          .catch(function(req) {
+            console.log("error saving obj", req.status)
+          })
+          .finally(function() {
+            console.log("always called")
+          });
+      };
 
     }, true);
 
 
-  }])
-  .controller('ConfigCtrl', ['$scope', 'Auth', '$state', 'Account', '$mdSidenav', 'Site', 'Config',
-    function($scope, Auth, $state, Account, $mdSidenav, Site, Config, mdColorPicker) {
-
-      $scope.$watch(Auth.isLoggedIn, function() {
-
-        $scope.toggleSidenav = function(menuId) {
-          $mdSidenav(menuId).toggle();
-        };
-
-        $scope.config = {
-          buttonText: 'Teleport',
-          buttonColor: '#ff6666',
-          textColor: '#ffffff',
-          width: '200',
-          position: 'left',
-          about: '',
-          siteId: $state.params.id
-        };
-        //Config.create($scope.config);
-        $scope.saveConfig = function() {
-          $scope.config.$save()
-            .then(function(res) {
-              console.log("authenticated", res)
-            })
-            .catch(function(req) {
-              console.log("error saving obj", req.status)
-            })
-            .finally(function() {
-              console.log("always called")
-            });
-        };
-
-
-        $scope.openLeftMenu = function() {
-          alert('openLeftMenu');
-          $mdSidenav('left').toggle();
-        };
-
-
-        function getConfig(id) {
-          Site.configs({
-              id: id
-            },
-            function success(results) {
-              $scope.config = results[0];
-            },
-            function error(error) {
-              console.log('ERROR: ', error);
-
-            }
-          );
-        }
-        getConfig($state.params.id);
-
-
-        Account.sites($scope.currentUser, function(sites, res) {
-          $scope.sites = sites;
-        });
-
-      }, true);
-
-    }
-  ]);
+  }]);
