@@ -53,6 +53,11 @@
               <h2>Edit widget settings</h2><br>
 
                   <md-input-container class="md-block">
+                    <label>Website domain name</label>
+                    <input md-maxlength="15" ng-model="site.domain">
+                  </md-input-container>
+
+                  <md-input-container class="md-block">
                     <label>Button text</label>
                     <input md-maxlength="15" ng-model="config.buttonText">
                   </md-input-container>
