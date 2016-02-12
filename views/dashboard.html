@@ -1,0 +1,135 @@
+<md-sidenav layout="column" class="md-sidenav-left md-whiteframe-z2" md-component-id="left" md-is-locked-open="$mdMedia('gt-md')">
+  <md-toolbar class=" md-hue-2">
+    <span flex></span>
+    <div layout="column" class="md-toolbar-tools-bottom inset">
+      <div>{{currentUser.email}}</div>
+    </div>
+  </md-toolbar>
+  <md-list>
+    <md-subheader>Your sites</md-subheader>
+    <md-item ng-repeat="site in sites">
+      <a href="#/site/{{site.id}}/config">
+        <md-item-content md-ink-ripple layout="row" layout-align="start center">
+          <div class="inset">
+            <ng-md-icon icon="{{site.status}}"></ng-md-icon>
+          </div>
+          <div class="inset">{{site.domain}}</div>
+        </md-item-content>
+      </a>
+        <md-divider></md-divider>
+    </md-item>
+    <md-subheader>Management</md-subheader>
+    <md-item ng-repeat="item in admin">
+      <a>
+        <md-item-content md-ink-ripple layout="row" layout-align="start center">
+          <div class="inset">
+            <ng-md-icon icon="{{item.icon}}"></ng-md-icon>
+          </div>
+          <div class="inset">{{item.title}}
+          </div>
+        </md-item-content>
+      </a>
+    </md-item>
+  </md-list>
+</md-sidenav>
+<div layout="column" class="relative" layout-fill role="main">
+  <!-- <md-button class="md-fab md-fab-bottom-right" aria-label="Add" ng-click="showAdd($event)">
+    <ng-md-icon icon="add"></ng-md-icon>
+  </md-button> -->
+  <md-toolbar>
+    <div class="md-toolbar-tools">
+      <md-button ng-click="toggleSidenav('left')" hide-gt-md aria-label="Menu">
+        <md-icon>menu</md-icon>
+      </md-button>
+      <h3>
+            Dashboard
+          </h3>
+      <span flex></span>
+      <md-button aria-label="Search" ng-click="showSearch = !showSearch">
+        <ng-md-icon icon="search"></ng-md-icon>
+      </md-button>
+      <md-button aria-label="Open Settings" ng-click="showListBottomSheet($event)">
+        <ng-md-icon icon="more_vert"></ng-md-icon>
+      </md-button>
+    </div>
+    <md-tabs md-stretch-tabs class="md-primary" md-selected="data.selectedIndex">
+      <md-tab id="tab1" aria-controls="tab1-content">
+        Edit
+      </md-tab>
+      <md-tab id="tab2" aria-controls="tab2-content">
+        Preview
+      </md-tab>
+    </md-tabs>
+  </md-toolbar>
+  <md-toolbar class="md-hue-1" ng-show="showSearch">
+    <div class="md-toolbar-tools">
+      <md-button ng-click="showSearch = !showSearch" aria-label="Back">
+        <ng-md-icon icon="arrow_back"></ng-md-icon>
+      </md-button>
+      <h3 flex="10">
+            Back
+          </h3>
+      <md-input-container md-theme="input" flex>
+        <label>&nbsp;</label>
+        <input ng-model="search.who" placeholder="enter search">
+      </md-input-container>
+      <md-button aria-label="Search" ng-click="showSearch = !showSearch">
+        <ng-md-icon icon="search"></ng-md-icon>
+      </md-button>
+      <md-button aria-label="Open Settings" ng-click="showListBottomSheet($event)">
+        <ng-md-icon icon="more_vert"></ng-md-icon>
+      </md-button>
+    </div>
+
+  </md-toolbar>
+  <md-content flex md-scroll-y class="">
+    <ui-view layout="column" layout-fill layout-padding>
+      <div class="inset" hide-sm></div>
+      <ng-switch on="data.selectedIndex" class="tabpanel-container">
+        <div role="tabpanel" id="tab1-content" aria-labelledby="tab1" ng-switch-when="0" md-swipe-left="next()" md-swipe-right="previous()" layout="row" layout-align="center center">
+          <md-card flex="50" flex-md="75" flex-xs="100" flex-sm="90">
+            <md-card-content>
+              <h2>Edit widget settings</h2><br>
+
+                  <md-input-container class="md-block">
+                    <label>Button text</label>
+                    <input md-maxlength="15" ng-model="config.buttonText">
+                  </md-input-container>
+
+                  <div flex label="Button color" md-color-picker random="true" open-on-input="true" ng-model="config.buttonColor"></div>
+
+                  <div flex label="Text color" md-color-picker random="true" open-on-input="true" ng-model="config.textColor"></div>
+
+                  <md-input-container class="md-block">
+                    <label>Widget width</label>
+                    <input ng-model="config.width">
+                  </md-input-container>
+
+                  <p>Position:</p><br>
+                  <md-radio-group ng-model="config.position">
+                    <md-radio-button value="left">Left</md-radio-button>
+                    <md-radio-button value="right"> Right </md-radio-button>
+                  </md-radio-group>
+
+                  <md-input-container class="md-block">
+                    <label>About text</label>
+                    <textarea ng-model="config.about" md-maxlength="150" rows="5" md-select-on-focus></textarea>
+                  </md-input-container>
+
+                  <md-button class="md-raised md-primary" ng-click="saveConfig()">Save</md-button>
+            </md-card-content>
+          </md-card>
+        </div>
+        <div role="tabpanel" id="tab2-content" aria-labelledby="tab2" ng-switch-when="1" md-swipe-left="next()" md-swipe-right="previous()" layout="row" layout-align="center center">
+          <md-card flex-gt-sm="90" flex-gt-md="80">
+            <md-card-content>
+              <h2>Preview widget settings</h2>
+
+            </md-card-content>
+          </md-card>
+        </div>
+
+      </ng-switch>
+
+    </ui-view>
+  </md-content>

@@ -1,0 +1,123 @@
+<!--allrecords-->
+<div id="allrecords" data-hook="blocks-collection-content-node" data-tilda-page="92881" >
+<div id="rec3869943" class="r" style=" "  data-record-type="231"  >
+
+
+  <script type="text/javascript">
+	 $('.t199_header').toggleClass('t199_dark');
+  </script>
+
+
+</div>
+
+
+<div id="rec3739934" class="r" style="padding-bottom:0px; " data-animationappear="off" data-record-type="18"  >
+<!-- cover -->
+
+
+
+<div class="cover" id="recorddiv3739934" bgimgfield="img" style="height:100vh; background-image:-webkit-linear-gradient(top, #ccc, #777); background-image:-moz-linear-gradient(top, #ccc, #777); background-image:-o-linear-gradient(top, #ccc, #777); background-image:-ms-linear-gradient(top, #ccc, #777); background-image:linear-gradient(top, #ccc, #777); ">
+	<div class="cover_carrier" id="coverCarry3739934" data-content-cover-id="3739934"  data-content-cover-bg="http://images.tildacdn.info/0c50b124-4794-4458-b2b9-8db9695db7bb/" data-content-cover-height="100vh" data-content-cover-parallax="fixed"      style="background-image:url('http://images.tildacdn.info/0c50b124-4794-4458-b2b9-8db9695db7bb/');height:100vh;"></div>
+
+    <div class="filteropacity" style="height:100vh;background-image: -moz-linear-gradient(top, rgba(0,0,0,0.30), rgba(0,0,0,0.30));background-image: -webkit-linear-gradient(top, rgba(0,0,0,0.30), rgba(0,0,0,0.30));background-image: -o-linear-gradient(top, rgba(0,0,0,0.30), rgba(0,0,0,0.30));background-image: -ms-linear-gradient(top, rgba(0,0,0,0.30), rgba(0,0,0,0.30));background-image: linear-gradient(top, rgba(0,0,0,0.30), rgba(0,0,0,0.30));filter: progid:DXImageTransform.Microsoft.gradient(startColorStr='#b2000000', endColorstr='#b2000000');"></div>
+
+	<div class="container">
+        <div class="lr_col_12 ">
+			<div class="centeredVerticallyBlock" style="height:100vh; ">
+                <div class="t001" style="text-align:center;">
+                  <div class="t001-wrapper" data-hook-content="covercontent">
+                    <div class="t001-uptitle uptitle-sm" field="subtitle">What is it?</div>                    <div class="t001-title title-xl" field="title">Teleportator</div>                    <div class="t001-descr descr-lg dcenter" field="descr">Ft3 is a convenient solution thanks to which the operator of an online-shop will be able to demonstrate his goods directly on your computer instead of trying to explain to the buyer by words on the phone where to click to see one or other model.</div>                    <span class="space"></span>
+                  </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</div>
+
+
+</div>
+
+
+<div id="rec3870415" class="r" style="padding-top:60px;padding-bottom:45px; " data-animationappear="off" data-record-type="131"  >
+		<!-- T123 -->
+<div class="t123">
+<div class="container ">
+<div class="lr_col_8 ">
+<ul ng-repeat="site in sites">
+<li><a href="#/site/{{site.id}}/config">{{site.domain}}</a></li>
+</ul>
+
+</div>
+</div>
+</div>
+
+
+</div>
+
+
+<div id="rec3741116" class="r" style="padding-top:56px;padding-bottom:56px; "  data-record-type="106"  >
+<!-- T004 -->
+<div class="t004">
+	<div class="container ">
+	  	<div class="lr_col_8 prefix_2">
+			<div field="text" class="text  ">How does it work? <br /> Phone an online shop. <br /> The manager will ask you to click on the button "Recobr?" and tell him an appeared four-digit number. <br /> Please, explain which model you need, or what characteristics you prefer. <br /> The manager will find the required product and demonstrate it in your computer browser. <br /> This service is provided by Recobr. {{config}}<br /></div>
+		</div>
+	</div>
+</div>
+
+</div>
+
+
+<div id="rec3741166" class="r" style="padding-top:56px;padding-bottom:56px; "  data-record-type="106"  >
+<!-- T004 -->
+<div class="t004">
+	<div class="container ">
+	  	<div class="lr_col_8 prefix_2">
+			<div field="text" class="text  ">Problems solved by the service: <br /> - Lost of your order if after the talking with the manager on the phone the customer cannot find things on the site that you have just discussed <br /> - Transactions committing, people make a buying decision easier when they can see the goods, and not listen to their description on the phone <br /> - Demand for cross-selling accessories (high marginal products) on the phone, leading to a higher average check amount <br /></div>
+		</div>
+	</div>
+</div>
+
+</div>
+
+
+</div>
+<!--/allrecords-->
+<script type="text/javascript">
+
+
+    function blocksdisplay(){
+		var window_width = $(window).width();
+        var recs = $('div.r[data-screen-max], div.r[data-screen-min]');
+        var max,min;
+        var disp;
+        recs.each(function(i) {
+            disp = $(this).css("display");
+            max = $(this).attr("data-screen-max");
+            if( max === undefined)max=10000;
+            max = parseInt(max);
+
+            min = $(this).attr("data-screen-min");
+            if( min === undefined)min=0;
+            min = parseInt(min);
+            console.log(min+"-"+max);
+            if(min<=max){
+	            if (window_width <= max && window_width > min) {
+	            	if(disp!="block")$(this).css("display","block");
+	            }else{
+	            	if(disp!="none")$(this).css("display","none");
+	            }
+	        }
+        });
+    }
+    $(document).ready(function(){
+    	blocksdisplay();
+    });
+	$(window).resize(function() {
+    	blocksdisplay();
+	});
+    //blocksdisplay();
+
+</script>
