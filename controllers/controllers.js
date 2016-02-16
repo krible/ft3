@@ -89,10 +89,7 @@ angular
       };
 
       $scope.logout = function () {
-
-        Account.logout().$promise.then(function() {
-          $state.go('index');
-        });
+        Auth.logout();
       };
 
 

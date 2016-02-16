@@ -161,6 +161,21 @@ var app = angular
         }
     };
 
+    Auth.logout = function() {
+      // Delete the token from the API.
+
+      User.logout().$promise.then(function() {
+        Auth.currentUser = null;
+        // Delete the user data cached locally.
+        Auth.clearUser();
+        Auth.save();
+        $state.go('index');
+      });
+
+
+
+    };
+
 
     return Auth;
 
