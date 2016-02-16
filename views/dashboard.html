@@ -1,48 +1,20 @@
 <div layout="column" class="relative" layout-fill role="main">
   <md-toolbar>
     <div class="md-toolbar-tools">
-      <md-button ng-click="toggleSidenav('left')" hide-gt-md aria-label="Menu">
-        <md-icon>menu</md-icon>
-      </md-button>
       <h3>Dashboard</h3>
-      <span flex></span>
-      <md-button aria-label="Search" ng-click="showSearch = !showSearch">
-        <ng-md-icon icon="search"></ng-md-icon>
-      </md-button>
-      <md-button aria-label="Open Settings" ng-click="showListBottomSheet($event)">
-        <ng-md-icon icon="more_vert"></ng-md-icon>
-      </md-button>
+      <span flex style="text-align:right; font-size:14px;">{{currentUser.email}}</span>
+      <md-button ng-click="logout();">logout</md-button>
     </div>
     <md-tabs md-stretch-tabs class="md-primary" md-selected="data.selectedIndex">
       <md-tab id="tab1" aria-controls="tab1-content">
         Edit
       </md-tab>
       <md-tab id="tab2" aria-controls="tab2-content">
-        Preview
+        Logs
       </md-tab>
     </md-tabs>
   </md-toolbar>
-  <md-toolbar class="md-hue-1" ng-show="showSearch">
-    <div class="md-toolbar-tools">
-      <md-button ng-click="showSearch = !showSearch" aria-label="Back">
-        <ng-md-icon icon="arrow_back"></ng-md-icon>
-      </md-button>
-      <h3 flex="10">
-            Back
-          </h3>
-      <md-input-container md-theme="input" flex>
-        <label>&nbsp;</label>
-        <input ng-model="search.who" placeholder="enter search">
-      </md-input-container>
-      <md-button aria-label="Search" ng-click="showSearch = !showSearch">
-        <ng-md-icon icon="search"></ng-md-icon>
-      </md-button>
-      <md-button aria-label="Open Settings" ng-click="showListBottomSheet($event)">
-        <ng-md-icon icon="more_vert"></ng-md-icon>
-      </md-button>
-    </div>
 
-  </md-toolbar>
 
 
   <md-content flex md-scroll-y ng-repeat="site in sites">
@@ -52,14 +24,24 @@
         <div role="tabpanel" id="tab1-content" aria-labelledby="tab1" ng-switch-when="0" md-swipe-left="next()" md-swipe-right="previous()" layout="row" layout-align="center center">
           <md-card flex="50" flex-md="75" flex-xs="100" flex-sm="90">
             <md-card-content>
-              <h2>Edit widget settings for {{site.domain}}</h2><br>
-
+              <div layout="row" layout-align="right">
+                <div flex="80">
+                  <h2 style="padding:10px 0px;">Edit widget settings for {{site.domain}}</h2>
+                </div>
+                <div flex="20">
+                  <md-switch ng-model="site.status">
+                    {{ site.status ? 'enable':'disable' }}
+                  </md-switch>
+                </div>
+              </div>
                   <md-input-container class="md-block">
                     <label>Website domain name</label>
                     <input ng-model="site.domain">
-                    <div class="hint">Domain name where teleportator be work</div>
+                    <!-- <div class="hint">Domain name where teleportator be work</div> -->
                   </md-input-container>
 
+                  <md-input-container><code>&lt;script>alert('Hello!');</script></code>
+                  </md-input-container>
                   <md-input-container class="md-block">
                     <label>Button text</label>
                     <input md-maxlength="15" ng-model="config[$index].buttonText">
@@ -92,8 +74,8 @@
         <div role="tabpanel" id="tab2-content" aria-labelledby="tab2" ng-switch-when="1" md-swipe-left="next()" md-swipe-right="previous()" layout="row" layout-align="center center">
           <md-card flex-gt-sm="90" flex-gt-md="80">
             <md-card-content>
-              <h2>Preview widget settings</h2>
-
+              <h2>View last 50 teleportation</h2>
+                {{log}}
             </md-card-content>
           </md-card>
         </div>

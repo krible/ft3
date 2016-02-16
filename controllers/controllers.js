@@ -9,25 +9,14 @@ angular
     //$scope.config = Site.configs.findById({ id: '56b221c80d79a91b5311898f' });
 
   }])
-  .controller('AuthCtrl', ['$scope', '$state', 'Auth', function($scope, $state, Auth) {
+  .controller('AuthCtrl', ['$scope', '$state', 'Auth', 'util', function($scope, $state, Auth, util) {
 
-    $scope.user = {
-      email: 'teplov@gmail.com',
-      password: 'windows'
-    };
-
-
-    $scope.login = function() {
-      //alert('AUTH');
-      Auth.login($scope.user.email, $scope.user.password)
-        .then(function() {
-          console.log('USER', Auth.currentUser);
-          $state.go('dashboard');
-        });
+    $scope.login = function () {
+      util.Login(Auth, $scope.account, $state);
     };
 
   }])
-  .controller('SignupCtrl', ['$scope', '$state', 'Account', 'Auth', '$mdToast', function($scope, $state, Account, Auth, $mdToast) {
+  .controller('SignupCtrl', ['$scope', '$state', 'Account', 'Auth', 'Site', 'Config', 'util', '$mdToast', function($scope, $state, Account, Auth, Site, Config, util, $mdToast) {
 
     $scope.account = {
       'email': '',
@@ -37,53 +26,18 @@ angular
     };
 
     $scope.signUp = function () {
-
-      if ($scope.account.password1.length > 5 && $scope.account.password1 === $scope.account.password2) {
-        $scope.user = {
-          email: $scope.account.email,
-          password: $scope.account.password1,
-          partnerId: '56b214eb363778034fc3d59a',
-          realm: 'test'
-        };
-        console.log('$scope.user',$scope.user);
-        Account.create($scope.user, function (res) {
-          Auth.login($scope.user.email, $scope.user.password)
-          .then(function() {
-            console.log('USER', Auth.currentUser);
-            $state.go('dashboard');
-          });
-
-        });
-
-
-      } else {
-        $mdToast.show(
-          $mdToast.simple()
-            .textContent('Passwords not compared!')
-            //.position({top: true, right: true})
-            .hideDelay(3000)
-        );
-      }
-
-    }
-
-
-
-    $scope.login = function() {
-      //alert('AUTH');
-      Auth.login($scope.user.email, $scope.user.password)
-        .then(function() {
-          console.log('USER', Auth.currentUser);
-          $state.go('dashboard');
-        });
+      util.SignUp(Auth, Account, Site, Config, $scope.account, $state);
     };
 
+
   }])
-  .controller('DashboardCtrl', ['$scope', 'Auth', '$state', 'Account', 'Site', 'Config', function($scope, Auth, $state, Account, Site, Config) {
+  .controller('DashboardCtrl', ['$scope', 'Auth', '$state', 'Account', 'Site', 'Config', 'Log', function($scope, Auth, $state, Account, Site, Config, Log) {
 
     $scope.$watch(Auth.isLoggedIn, function() {
 
+
       $scope.config = [];
+      $scope.log = [];
 
       Account.sites($scope.currentUser, function(sites, res) {
         $scope.sites = sites;
@@ -116,6 +70,31 @@ angular
             console.log("always called")
           });
       };
+
+      $scope.logs = function () {
+        Account.sites($scope.currentUser, function(sites, res) {
+          $scope.sites = sites;
+          for (var s in sites) {
+            //console.log('sites[s].id', s);
+            if (sites[s].id) {
+              Site.logs({id: sites[s].id},
+              function success(results) {
+                //console.log('cfg', results);
+                $scope.log.push(results[0]);
+                //console.log('CONF', $scope.config);
+              });
+            }
+          }
+        });
+      };
+
+      $scope.logout = function () {
+
+        Account.logout().$promise.then(function() {
+          $state.go('index');
+        });
+      };
+
 
     }, true);
 

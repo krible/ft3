@@ -74,3 +74,18 @@ md-sidenav ng-md-icon {
 .user-avatar {
   border-radius: 99%;
 }
+
+md-color-picker .md-color-picker-input-container .md-color-picker-preview,
+[md-color-picker] .md-color-picker-input-container .md-color-picker-preview {
+  margin:20px 0px !important;
+}
+
+.md-icon-button {
+  width: 30px !important;
+  height: 30px !important;
+  bottom: 50px !important;
+}
+
+.md-color-picker-tabs {
+  //display: none;
+}
