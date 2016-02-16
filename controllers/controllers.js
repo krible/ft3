@@ -41,18 +41,31 @@ angular
       }
 
       $scope.config = [];
-      $scope.log = [];
+      $scope.logs = null;
+
+      $scope.ts = function(ts) {
+        var d = new Date(ts);
+        return d.toString('dd.MM.yyyy hh:mm:ss');
+      };
 
       Account.sites($scope.currentUser, function(sites, res) {
         $scope.sites = sites;
         for (var s in sites) {
           //console.log('sites[s].id', s);
           if (sites[s].id) {
-            Site.configs({id: sites[s].id},
-            function success(results) {
-              //console.log('cfg', results);
-              $scope.config.push(results[0]);
-              //console.log('CONF', $scope.config);
+
+            Site.configs({id: sites[s].id})
+            .$promise
+            .then(function(res) {
+              $scope.config.push(res[0]);
+            });
+            Site.logs({id: sites[s].id})
+            .$promise
+            .then(function(res) {
+              //console.log('LOGS', res);
+              if (res[0]) {
+                $scope.logs = res;
+              }
             });
           }
         }
@@ -75,22 +88,6 @@ angular
           });
       };
 
-      $scope.logs = function () {
-        Account.sites($scope.currentUser, function(sites, res) {
-          $scope.sites = sites;
-          for (var s in sites) {
-            //console.log('sites[s].id', s);
-            if (sites[s].id) {
-              Site.logs({id: sites[s].id},
-              function success(results) {
-                //console.log('cfg', results);
-                $scope.log.push(results[0]);
-                //console.log('CONF', $scope.config);
-              });
-            }
-          }
-        });
-      };
 
       $scope.logout = function () {
         Auth.logout();

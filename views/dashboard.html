@@ -17,13 +17,13 @@
 
 
 
-  <md-content flex md-scroll-y ng-repeat="site in sites">
+  <md-content flex md-scroll-y>
     <ui-view layout="column" layout-fill layout-padding>
       <div class="inset" hide-sm></div>
       <ng-switch on="data.selectedIndex" class="tabpanel-container">
-        <div role="tabpanel" id="tab1-content" aria-labelledby="tab1" ng-switch-when="0" md-swipe-left="next()" md-swipe-right="previous()" layout="row" layout-align="center center">
+        <div ng-repeat="site in sites" role="tabpanel" id="tab1-content" aria-labelledby="tab1" ng-switch-when="0" md-swipe-left="next()" md-swipe-right="previous()" layout="row" layout-align="center center">
           <md-card flex="50" flex-md="75" flex-xs="100" flex-sm="90">
-            <md-card-content>
+            <md-card-content >
               <div layout="row" layout-align="right">
                 <div flex="80">
                   <h2 style="padding:10px 0px;">Edit widget settings for {{site.domain}}</h2>
@@ -71,11 +71,35 @@
             </md-card-content>
           </md-card>
         </div>
+
         <div role="tabpanel" id="tab2-content" aria-labelledby="tab2" ng-switch-when="1" md-swipe-left="next()" md-swipe-right="previous()" layout="row" layout-align="center center">
           <md-card flex-gt-sm="90" flex-gt-md="80">
             <md-card-content>
               <h2>View last 50 teleportation</h2>
-                {{log}}
+
+              <md-table-container>
+                <table md-table>
+                  <thead md-head>
+                    <tr md-row>
+                      <th md-column>Created</th>
+                      <th md-column>Code</th>
+                      <th md-column>Url</th>
+                      <th md-column>Type</th>
+                      <th md-column>UserId</th>
+                    </tr>
+                  </thead>
+                  <tbody md-body>
+                    <tr md-row ng-repeat="log in logs | orderBy: '-created' | limitTo: 50">
+                      <td md-cell>{{ ts(log.created) }}</td>
+                      <td md-cell>{{log.telecode}}</td>
+                      <td md-cell>{{log.url}}</td>
+                      <td md-cell>{{log.type}}</td>
+                      <td md-cell>{{log.nid}}</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </md-table-container>
+
             </md-card-content>
           </md-card>
         </div>

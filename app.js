@@ -4,7 +4,7 @@ var app = angular
   .module('app', [
     'lbServices',
     'ngMaterial',
-  //  'ngMessages',
+    'md.data.table',
     'ngCookies',
     'mdColorPicker',
     'ui.router'

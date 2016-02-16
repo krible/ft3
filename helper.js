@@ -18,7 +18,7 @@ app
         user = {
           email: account.email,
           password: account.password1,
-          partnerId: '56b214eb363778034fc3d59a',
+          partnerId: '56c347380ac79503000b34b0',
           realm: 'test'
         };
 
