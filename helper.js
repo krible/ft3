@@ -3,11 +3,11 @@ app
 
   return {
 
-    Login: function (Auth, user, $state) {
+    Login: function (Auth, user, $state, cb) {
 
       Auth.login(user.email, user.password)
       .then(function() {
-        $state.go('dashboard');
+        cb(true);
       });
 
     },
@@ -29,9 +29,12 @@ app
         .$promise
         .then(function(res) {
           console.log('Create account: ', res);
-          util.CreateSite(Site, Config, res.id, function () {
-            util.Login(Auth, user, $state);
+          util.Login(Auth, user, $state, function () {
+            util.CreateSite(Site, Config, res.id, function () {
+              $state.go('dashboard');
+            });
           });
+
 
         });
 

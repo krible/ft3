@@ -12,7 +12,9 @@ angular
   .controller('AuthCtrl', ['$scope', '$state', 'Auth', 'util', function($scope, $state, Auth, util) {
 
     $scope.login = function () {
-      util.Login(Auth, $scope.account, $state);
+      util.Login(Auth, $scope.account, $state, function () {
+        $state.go('dashboard');
+      });
     };
 
   }])
