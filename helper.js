@@ -29,15 +29,17 @@ app
         .$promise
         .then(function(res) {
           console.log('Create account: ', res);
-          util.CreateSite(Site, Config, res.id);
-          util.Login(Auth, user, $state);
+          util.CreateSite(Site, Config, res.id, function () {
+            util.Login(Auth, user, $state);
+          });
+
         });
 
       }
 
     },
 
-    CreateSite: function (Site, Config, accountId) {
+    CreateSite: function (Site, Config, accountId, cb) {
 
       var data = {
         "domain": "www.mysite.com",
@@ -53,13 +55,13 @@ app
         .$promise
         .then(function(res) {
           console.log('Create site: ',res);
-          util.CreateConf(Config, res.id);
+          util.CreateConf(Config, res.id, cb);
         });
       }
 
     },
 
-    CreateConf: function (Config, siteId) {
+    CreateConf: function (Config, siteId, cb) {
 
       var data = {
         "buttonText": "Teleportator",
@@ -79,7 +81,7 @@ app
         .$promise
         .then(function(res) {
           console.log('Create config: ', res);
-          return true;
+          cb(true);
         });
       }
 
