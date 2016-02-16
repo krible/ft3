@@ -35,8 +35,10 @@ angular
   }])
   .controller('DashboardCtrl', ['$scope', 'Auth', '$state', 'Account', 'Site', 'Config', 'Log', function($scope, Auth, $state, Account, Site, Config, Log) {
 
-    $scope.$watch(Auth.isLoggedIn, function() {
-
+    $scope.$watch(Auth.isLoggedIn, function(newData, prevData) {
+      if (!newData) {
+        return;
+      }
 
       $scope.config = [];
       $scope.log = [];

@@ -167,6 +167,7 @@ var app = angular
       User.logout().$promise.then(function() {
         // Delete the user data cached locally.
         Auth.currentUser = null;
+        $rootScope.currentUser = null;
         Auth.clearUser();
         Auth.save();
         $state.go('index');
