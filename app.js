@@ -43,6 +43,22 @@ var app = angular
           }
         }
       })
+      .state('privacy', {
+        url: '/privacy',
+        views: {
+          "commonView": {
+            templateUrl: "tilda/privacy.html"
+          }
+        }
+      })
+      .state('terms', {
+        url: '/terms',
+        views: {
+          "commonView": {
+            templateUrl: "tilda/terms.html"
+          }
+        }
+      })
       .state('sign', {
         url: '/sign',
         views: {
