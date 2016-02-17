@@ -40,7 +40,7 @@ angular
         return;
       }
 
-      $scope.config = [];
+      $scope.config = {};
       $scope.logs = null;
 
       $scope.ts = function(ts) {
@@ -50,6 +50,7 @@ angular
 
       Account.sites($scope.currentUser, function(sites, res) {
         $scope.sites = sites;
+        $scope.sites.config = {};
         for (var s in sites) {
           //console.log('sites[s].id', s);
           if (sites[s].id) {
@@ -57,7 +58,9 @@ angular
             Site.configs({id: sites[s].id})
             .$promise
             .then(function(res) {
-              $scope.config.push(res[0]);
+              console.log('s', res[0]);
+              $scope.config[res[0].siteId] = res[0];
+              console.log('$scope.sites[s].config',$scope.config);
             });
             Site.logs({id: sites[s].id})
             .$promise
@@ -69,6 +72,11 @@ angular
             });
           }
         }
+
+        if (KribleLoader && KribleLoader.reinitConfig) {
+          KribleLoader.reinitConfig(sites[0].id);
+        }
+
       });
 
 

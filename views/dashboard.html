@@ -44,30 +44,30 @@
                   </md-input-container>
                   <md-input-container class="md-block">
                     <label>Button text</label>
-                    <input md-maxlength="15" ng-model="config[$index].buttonText">
+                    <input md-maxlength="15" ng-model="config[site.id].buttonText">
                   </md-input-container>
 
-                  <div flex label="Button color" md-color-picker random="true" open-on-input="true" ng-model="config[$index].buttonColor"></div>
+                  <div flex label="Button color" md-color-picker random="true" open-on-input="true" ng-model="config[site.id].buttonColor"></div>
 
-                  <div flex label="Text color" md-color-picker random="true" open-on-input="true" ng-model="config[$index].textColor"></div>
+                  <div flex label="Text color" md-color-picker random="true" open-on-input="true" ng-model="config[site.id].textColor"></div>
 
                   <md-input-container class="md-block">
                     <label>Widget width</label>
-                    <input ng-model="config[$index].width">
+                    <input ng-model="config[site.id].width">
                   </md-input-container>
 
                   <p>Position:</p><br>
-                  <md-radio-group ng-model="config[$index].position">
+                  <md-radio-group ng-model="config[site.id].position">
                     <md-radio-button value="left">Left</md-radio-button>
                     <md-radio-button value="right"> Right </md-radio-button>
                   </md-radio-group>
 
                   <md-input-container class="md-block">
                     <label>About text</label>
-                    <textarea ng-model="config[$index].about" md-maxlength="150" rows="5" md-select-on-focus></textarea>
+                    <textarea ng-model="config[site.id].about" md-maxlength="150" rows="5" md-select-on-focus></textarea>
                   </md-input-container>
 
-                  <md-button class="md-raised md-primary" ng-click="saveConfig($index)">Save</md-button>
+                  <md-button class="md-raised md-primary" ng-click="saveConfig(site.id)">Save</md-button>
             </md-card-content>
           </md-card>
         </div>
