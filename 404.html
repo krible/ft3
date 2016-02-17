@@ -5,7 +5,9 @@
     <title></title>
     <script type="text/javascript">
       var url = window.location.href.split('/');
-      console.log(url);
+      if (url && url[3]) {
+        window.location.href = "/#/" + url[3];
+      }
     </script>
   </head>
   <body>
