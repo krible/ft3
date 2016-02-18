@@ -3,6 +3,7 @@
 var app = angular
   .module('app', [
     'lbServices',
+    'ngclipboard',
     'ngMaterial',
     'md.data.table',
     'ngCookies',

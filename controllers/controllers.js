@@ -33,7 +33,7 @@ angular
 
 
   }])
-  .controller('DashboardCtrl', ['$scope', 'Auth', '$state', 'Account', 'Site', 'Config', 'Log', function($scope, Auth, $state, Account, Site, Config, Log) {
+  .controller('DashboardCtrl', ['$scope', 'Auth', '$state', '$http', 'Account', 'Site', 'Config', 'Log', function($scope, Auth, $state, $http,  Account, Site, Config, Log) {
 
     $scope.$watch(Auth.isLoggedIn, function(newData, prevData) {
       if (!newData) {
@@ -42,6 +42,7 @@ angular
 
       $scope.config = {};
       $scope.logs = null;
+      $scope.code = [];
 
       $scope.ts = function(ts) {
         var d = new Date(ts);
@@ -53,16 +54,31 @@ angular
         $scope.sites.config = {};
         for (var s in sites) {
           //console.log('sites[s].id', s);
-          if (sites[s].id) {
+          var siteId = sites[s].id;
+          if (siteId) {
 
-            Site.configs({id: sites[s].id})
+            Site.configs({id: siteId})
             .$promise
             .then(function(res) {
               console.log('s', res[0]);
               $scope.config[res[0].siteId] = res[0];
               console.log('$scope.sites[s].config',$scope.config);
             });
-            Site.logs({id: sites[s].id})
+
+
+            $http({
+              method: 'GET',
+              dataType: "text/plain",
+              siteid: siteId,
+              url: '//ft3.herokuapp.com/codeForSite?code=' + siteId
+            }).then(function successCallback(response) {
+                $scope.code[response.config.siteid] = response.data;
+                console.log("$scope.code", $scope.code);
+              }, function errorCallback(response) {
+                $scope.code[siteId] = 'Sorry! Something wrong...';
+              });
+
+            Site.logs({id: siteId})
             .$promise
             .then(function(res) {
               //console.log('LOGS', res);

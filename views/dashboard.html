@@ -40,7 +40,10 @@
                     <!-- <div class="hint">Domain name where teleportator be work</div> -->
                   </md-input-container>
 
-                  <md-input-container><code>&lt;script>alert('Hello!');</script></code>
+                  <md-input-container>
+                    <label class="md-caption">Get this code to HTML-template of your site</label><br><br>
+                    <p><pre class="md-caption">{{code[site.id]}}</pre></p>
+                    <md-button class="md-raised md-primary" ngclipboard data-clipboard-text="{{code[site.id]}}">Copy to clipboard</md-button>
                   </md-input-container>
                   <md-input-container class="md-block">
                     <label>Button text</label>
