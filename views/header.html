@@ -1,0 +1,154 @@
+<!--allrecords-->
+<div id="allrecords" data-hook="blocks-collection-content-node" data-tilda-page="99056" >
+<div id="rec3918379" class="r" style=" " data-animationappear="off" data-record-type="257"  >
+
+
+
+
+<!-- T228 -->
+<div id="nav3918379marker"></div>
+<div id="nav3918379" class="t228 positionfixed" style="background-color: rgba(0,0,0,0.60); height:60px; " data-bgcolor-hex="#000000" data-bgcolor-rgba="rgba(0,0,0,0.60)" data-navmarker="nav3918379marker" data-appearoffset="" data-bgopacity="0.60"  >
+    <div class="maincontainer c12collumns" style="height:60px;">
+          <div class="padding40px"></div>
+
+          <div class="leftside">
+                        <div class="leftcontainer">
+                <a href="/" style="color:#fcf9f9;"><h3 field="title" style="color:#fcf9f9;"><strong>FT3</strong></h3></a>            </div>
+                      </div>
+
+          <div class="centerside ">
+                        <div class="centercontainer">
+            <ul>
+                        <li><a href="#/features" style="color:#fcf9f9;font-weight:400;text-transform:uppercase;">Features</a></li>
+                        <li><a href="#/plans" style="color:#fcf9f9;font-weight:400;text-transform:uppercase;">Plans</a></li>
+
+                        </ul>
+            </div>
+                      </div>
+
+          <div class="rightside">
+                          <div class="rightcontainer">
+
+                                    <div class="right_buttons">
+                        <div class="right_buttons_wrap">
+                          <div class="right_buttons_but"><a href="#/sign" class="tilda-btn" style="color:#00fc7a; border:3px solid #59cf92;  border-radius: 20px; -moz-border-radius: 20px; -webkit-border-radius: 20px;"><table style="width:100%; height:100%;"><tr><td>SIGN UP FOR FREE</td></tr></table></a></div>
+                        </div>
+                    </div>
+                                                    <div class="right_langs">
+                        <div class="right_buttons_wrap">
+                        <div class="right_langs_lang"><a style="color:#fcf9f9;font-weight:400;text-transform:uppercase;" href="#/auth">Login</a></div>                                                </div>
+                    </div>
+
+             </div>
+                       </div>
+
+          <div class="padding40px"></div>
+  </div>
+</div>
+
+<script type="text/javascript">
+
+    var current_path = window.location.pathname.split('/').pop();
+    if(current_path=="page99056.html"){
+        $("#t228linktopage99056").css("opacity",".7");
+    }
+
+</script>
+
+<script type="text/javascript">
+
+  function t228_setwidth(){
+      var window_width=$(window).width();
+      if(window_width>980){
+          $(".t228").each(function() {
+             var el=$(this);
+             var left_exist=el.find('.leftcontainer').length;
+             var left_w=el.find('.leftcontainer').outerWidth(true);
+             var max_w=left_w;
+             var right_exist=el.find('.rightcontainer').length;
+             var right_w=el.find('.rightcontainer').outerWidth(true);
+             if(left_w<right_w)max_w=right_w;
+             max_w=Math.ceil(max_w);
+             var center_w=0;
+             el.find('.centercontainer').find('li').each(function() {
+               center_w+=$(this).outerWidth(true);
+             });
+             //console.log(max_w);
+             //console.log(center_w);
+             var padd_w=40;
+             var maincontainer_width=el.find(".maincontainer").outerWidth(true);
+             if(maincontainer_width-max_w*2-padd_w*2>center_w+20){
+                 if(left_exist>0 && right_exist>0){
+                     el.find(".leftside").css("min-width",max_w+"px");
+                     el.find(".rightside").css("min-width",max_w+"px");
+                 }
+             }else{
+                 el.find(".leftside").css("min-width","");
+                 el.find(".rightside").css("min-width","");
+             }
+          });
+      }
+  }
+  $(window).resize(function() {
+      t228_setwidth();
+  });
+  $(window).load(function() {
+      t228_setwidth();
+  });
+  $(document).ready(function() {
+      t228_setwidth();
+  });
+  t228_setwidth();
+
+</script>
+
+
+<script type="text/javascript">
+
+  function t228_setbg(){
+      var window_width=$(window).width();
+      if(window_width>980){
+          $(".t228").each(function() {
+             var el=$(this);
+             if(el.attr('data-bgcolor-setbyscript')=="yes"){
+                 var bgcolor=el.attr("data-bgcolor-rgba");
+                 el.css("background-color",bgcolor);
+             }
+          });
+      }else{
+          $(".t228").each(function() {
+             var el=$(this);
+             var bgcolor=el.attr("data-bgcolor-hex");
+             el.css("background-color",bgcolor);
+             el.attr("data-bgcolor-setbyscript","yes");
+          });
+      }
+  }
+  $(window).resize(function() {
+      t228_setbg();
+  });
+  $(document).ready(function() {
+      t228_setbg();
+  });
+  t228_setbg();
+
+</script>
+
+
+
+</div>
+
+
+<div id="rec3918447" class="r" style=" "  data-record-type="231"  >
+
+
+  <script type="text/javascript">
+	 $('.t199_header').toggleClass('t199_dark');
+  </script>
+
+
+</div>
+
+
+</div>
+<!--/allrecords-->
