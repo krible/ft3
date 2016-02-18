@@ -1,6 +1,6 @@
 BODY {
   margin:0px;
-  //background-color: #eee;
+  background-color: #eee;
 }
 
 .e404 {
@@ -19,7 +19,6 @@ BODY {
 
 md-content {
   background-color: #eee !important;
-  background-image: url('/images/background.jpg');
 }
 
 md-card {
@@ -97,11 +96,4 @@ md-color-picker .md-color-picker-input-container .md-color-picker-preview,
   padding: 5px;
   font-size:10px;
   overflow: hidden;
-}
-
-footer {
-  position: fixed;
-  bottom:0px;
-  left: 0px;
-  right:0px;
 }

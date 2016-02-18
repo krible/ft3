@@ -1,0 +1,25 @@
+{
+  "name": "ft3_frontend",
+  "version": "1.0.0",
+  "description": "Frontend for FT3 project",
+  "main": "app.js",
+  "dependencies": {
+    "gulp": "^3.9.1",
+    "gulp-concat": "^2.6.0",
+    "gulp-uglify": "^1.5.2",
+    "main-bower-files": "^2.11.1"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/krible/ft3.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/krible/ft3/issues"
+  },
+  "homepage": "https://github.com/krible/ft3#readme"
+}
