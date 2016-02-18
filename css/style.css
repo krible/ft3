@@ -89,3 +89,11 @@ md-color-picker .md-color-picker-input-container .md-color-picker-preview,
 .md-color-picker-tabs {
   //display: none;
 }
+
+.code_source {
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  padding: 5px;
+  font-size:10px;
+  overflow: hidden;
+}

@@ -34,17 +34,20 @@
                   </md-switch>
                 </div>
               </div>
+
+
+                    <p class="md-caption">Get this code to HTML-template of your site</p><br>
+                    <pre class="md-caption code_source">{{code[site.id]}}</pre>
+                    <div flex style="text-align:right;">
+                      <md-button class="md-raised" ngclipboard data-clipboard-text="{{code[site.id]}}">Copy to Clipboard</md-button>
+                    </div>
+
                   <md-input-container class="md-block">
                     <label>Website domain name</label>
                     <input ng-model="site.domain">
                     <!-- <div class="hint">Domain name where teleportator be work</div> -->
                   </md-input-container>
 
-                  <md-input-container>
-                    <label class="md-caption">Get this code to HTML-template of your site</label><br><br>
-                    <p><pre class="md-caption">{{code[site.id]}}</pre></p>
-                    <md-button class="md-raised md-primary" ngclipboard data-clipboard-text="{{code[site.id]}}">Copy to clipboard</md-button>
-                  </md-input-container>
                   <md-input-container class="md-block">
                     <label>Button text</label>
                     <input md-maxlength="15" ng-model="config[site.id].buttonText">
@@ -52,7 +55,7 @@
 
                   <div flex label="Button color" md-color-picker random="true" open-on-input="true" ng-model="config[site.id].buttonColor"></div>
 
-                  <div flex label="Text color" md-color-picker random="true" open-on-input="true" ng-model="config[site.id].textColor"></div>
+                  <!-- <div flex label="Text color" md-color-picker random="true" open-on-input="true" ng-model="config[site.id].textColor"></div> -->
 
                   <md-input-container class="md-block">
                     <label>Widget width</label>
@@ -61,8 +64,14 @@
 
                   <p>Position:</p><br>
                   <md-radio-group ng-model="config[site.id].position">
-                    <md-radio-button value="left">Left</md-radio-button>
-                    <md-radio-button value="right"> Right </md-radio-button>
+                  <div layout="row">
+                    <div flex="25">
+                      <md-radio-button value="left">Left</md-radio-button>
+                    </div>
+                    <div flex="25">
+                      <md-radio-button value="right"> Right </md-radio-button>
+                    </div>
+                  </div>
                   </md-radio-group>
 
                   <md-input-container class="md-block">
