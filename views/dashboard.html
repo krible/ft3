@@ -1,4 +1,4 @@
-<md-button id="alert" ng-click="goto('billing')" class="md-raised md-primary md-hue-1">Trial period has expired after 5 days. Please, add a Credit Card number for purchase this account.</md-button>
+<md-toolbar id="alert" ng-click="goto('billing')" class="md-primary md-hue-1 md-body-1">Trial period has expired after 5 days. Please, add a Credit Card number for purchase this account.</md-toolbar>
 <md-toolbar>
   <div class="md-toolbar-tools">
     <h3>Dashboard</h3>
@@ -127,16 +127,13 @@
               <h2>Billing</h2>
 
               <md-list>
-<!-- <md-subheader class="md-no-sticky"> 3 line item</md-subheader> -->
                 <md-list-item>
-                  <md-icon md-font-set="material-icons">credit_card</md-icon>
-                  <p>This account is billed to Visa ending in <b>6877</b></p>
+                  <p class="md-body-1"><md-icon md-font-set="material-icons">credit_card</md-icon> This account is billed to Visa ending in <b>6877</b></p>
                   <md-button class="md-primary">Delete this Card</md-button>
                 </md-list-item>
                 <md-divider ></md-divider>
                 <md-list-item>
-                  <md-icon md-font-set="material-icons">credit_card</md-icon>
-                  <p>You must add a Credit Card</p>
+                  <p class="md-body-1"><md-icon md-font-set="material-icons">credit_card</md-icon> You must add a Credit Card</p>
                   <md-button class="md-primary">Add Credit Card</md-button>
                 </md-list-item>
                 <md-divider ></md-divider>
@@ -146,7 +143,7 @@
               <br>
               <h2>Plans</h2>
 
-              <div layout="row" layout-padding layout-margin layout-wrap layout-fill>
+              <div layout="row" layout-xs="column" layout-padding layout-margin layout-wrap layout-fill>
                 <div class="plan" md-whiteframe="1" flex layout="column" layout-align="center center">
                     <h3>Plan A</h3>
                     <p>1 domain</p>
