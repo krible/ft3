@@ -1,8 +1,19 @@
 var gulp = require('gulp');
 var mainBowerFiles = require('main-bower-files');
+var prompt = require('gulp-prompt');
 var ghPages = require('gulp-gh-pages');
 var concat = require('gulp-concat');
 var uglify = require('gulp-uglify');
+
+
+gulp.task('head', function () {
+  console.log("   ______________   ______    __                  __       __          ");
+  console.log("  / __/_  __/_  /  /_  __/__ / /__ ___  ___  ____/ /____ _/ /____  ____");
+  console.log(" / _/  / / _/_ <    / / / -_) / -_) _ \\/ _ \\/ __/ __/ _ `/ __/ _ \\/ __/");
+  console.log("/_/   /_/ /____/   /_/  \\__/_/\\__/ .__/\\___/_/  \\__/\\_,_/\\__/\\___/_/   ");
+  console.log("                                /_/                                    ");
+  console.log("Krible Project");
+});
 
 
 gulp.task('bower', function() {
@@ -47,10 +58,11 @@ gulp.task('tilda', function() {
 });
 
 // The default task (called when you run `gulp` from cli)
-gulp.task('default', ['bower', 'controllers', 'css', 'images', 'js', 'views', 'tilda', 'root']);
+gulp.task('buld', ['head', 'bower', 'controllers', 'css', 'images', 'js', 'views', 'tilda', 'root']);
 
 
-gulp.task('deploy', ['default'], function() {
+gulp.task('default', ['buld'], function() {
   return gulp.src('./dist/**/*')
+    .pipe(prompt.confirm('Push to gh-pages branch?'))
     .pipe(ghPages());
 });
