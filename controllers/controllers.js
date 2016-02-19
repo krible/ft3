@@ -33,12 +33,36 @@ angular
 
 
   }])
-  .controller('DashboardCtrl', ['$scope', 'Auth', '$state', '$http', 'Account', 'Site', 'Config', 'Log', function($scope, Auth, $state, $http,  Account, Site, Config, Log) {
+  .controller('DashboardCtrl', ['$scope', 'Auth', '$state', '$http', 'Account', 'Site', 'Config', 'Log', '$location', function($scope, Auth, $state, $http,  Account, Site, Config, Log, $location) {
 
     $scope.$watch(Auth.isLoggedIn, function(newData, prevData) {
       if (!newData) {
         return;
       }
+
+    //  console.log($location.hash());
+
+      var tabHash = ['edit', 'logs', 'billing'];
+
+      $scope.tab = {
+        selectedIndex: 0
+      };
+
+
+      var mapHash = function () {
+        tabHash.map(function (tab, index) {
+          if ($location.hash() == tab) $scope.tab.selectedIndex = index;
+        });
+      };
+      $scope.$on('$locationChangeSuccess', function(event) {
+        mapHash();
+      });
+      mapHash();
+
+      $scope.goto = function (hash) {
+        $location.hash(hash);
+      };
+
 
       $scope.config = {};
       $scope.logs = null;
@@ -120,5 +144,13 @@ angular
 
     }, true);
 
+
+  }])
+  .controller('BillingCtrl', ['$scope', 'Auth', '$state', '$http', 'Account', 'Site', 'Config', 'Log', function($scope, Auth, $state, $http,  Account, Site, Config, Log) {
+
+
+    $scope.hello = 'Hello, Valentine!';
+    //console.log(Site.configs.findById({ id: '56b221c80d79a91b5311898f' }));
+    //$scope.config = Site.configs.findById({ id: '56b221c80d79a91b5311898f' });
 
   }]);

@@ -97,3 +97,22 @@ md-color-picker .md-color-picker-input-container .md-color-picker-preview,
   font-size:10px;
   overflow: hidden;
 }
+
+.plan {
+  line-height: 200%;
+}
+.plan P {
+  font-size: 14px;
+}
+
+#alert {
+  width:100%;
+  margin:0px !important;
+  border-radius:0px !important;
+  box-shadow: none !important;
+}
+
+md-tabs.md-default-theme md-ink-bar, md-tabs md-ink-bar {
+    color: #FFF !important;
+    background-color: #D1C4E9 !important;
+}

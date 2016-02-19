@@ -10,13 +10,20 @@ var app = angular
     'mdColorPicker',
     'ui.router'
   ])
-  .config(['$stateProvider', '$urlRouterProvider', '$locationProvider', 'LoopBackResourceProvider', function($stateProvider,
-    $urlRouterProvider, $locationProvider, LoopBackResourceProvider) {
+  .config(['$stateProvider', '$urlRouterProvider', '$locationProvider', '$mdThemingProvider', 'LoopBackResourceProvider', function($stateProvider,
+    $urlRouterProvider, $locationProvider, $mdThemingProvider, LoopBackResourceProvider) {
 
     // Use a custom auth header instead of the default 'Authorization'
     LoopBackResourceProvider.setAuthHeader('X-Access-Token');
     // Change the URL where to access the LoopBack REST API server
     LoopBackResourceProvider.setUrlBase('http://ft3.herokuapp.com/api');
+
+    $mdThemingProvider
+    .theme('default')
+    .primaryPalette('deep-purple')
+    .accentPalette('deep-purple')
+    .warnPalette('red')
+    //.backgroundPalette('blue-grey');
 
     $stateProvider
       .state('index', {
