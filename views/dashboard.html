@@ -1,26 +1,31 @@
-<div layout="column" class="relative" layout-fill role="main">
-  <md-toolbar>
-    <div class="md-toolbar-tools">
-      <h3>Dashboard</h3>
-      <span flex style="text-align:right; font-size:14px;">{{currentUser.email}}</span>
-      <md-button ng-click="logout();">logout</md-button>
-    </div>
-    <md-tabs md-stretch-tabs class="md-primary" md-selected="data.selectedIndex">
-      <md-tab id="tab1" aria-controls="tab1-content">
-        Edit
-      </md-tab>
-      <md-tab id="tab2" aria-controls="tab2-content">
-        Logs
-      </md-tab>
-    </md-tabs>
-  </md-toolbar>
+<md-button id="alert" ng-click="goto('billing')" class="md-raised md-primary md-hue-1">Trial period has expired after 5 days. Please, add a Credit Card number for purchase this account.</md-button>
+<md-toolbar>
+  <div class="md-toolbar-tools">
+    <h3>Dashboard</h3>
+    <span flex style="text-align:right; font-size:14px;">{{currentUser.email}}</span>
+    <md-button ng-click="logout();">logout</md-button>
+  </div>
+  <md-tabs md-stretch-tabs class="md-primary" md-selected="tab.selectedIndex">
+    <md-tab id="tab1" ng-click="goto('edit')" aria-controls="tab1-content" class="md-accent">
+      Edit
+    </md-tab>
+    <md-tab id="tab2" ng-click="goto('logs')" aria-controls="tab2-content">
+      Logs
+    </md-tab>
+    <md-tab id="tab3" ng-click="goto('billing')" aria-controls="tab3-content">
+      Billing
+    </md-tab>
+  </md-tabs>
+</md-toolbar>
+
+
 
 
 
   <md-content flex md-scroll-y>
     <ui-view layout="column" layout-fill layout-padding>
       <div class="inset" hide-sm></div>
-      <ng-switch on="data.selectedIndex" class="tabpanel-container">
+      <ng-switch on="tab.selectedIndex" class="tabpanel-container">
         <div ng-repeat="site in sites" role="tabpanel" id="tab1-content" aria-labelledby="tab1" ng-switch-when="0" md-swipe-left="next()" md-swipe-right="previous()" layout="row" layout-align="center center">
           <md-card flex="50" flex-md="75" flex-xs="100" flex-sm="90">
             <md-card-content >
@@ -111,6 +116,84 @@
                   </tbody>
                 </table>
               </md-table-container>
+
+            </md-card-content>
+          </md-card>
+        </div>
+
+        <div role="tabpanel" id="tab3-content" aria-labelledby="tab3" ng-switch-when="2" md-swipe-left="next()" md-swipe-right="previous()" layout="row" layout-align="center center">
+          <md-card flex-gt-sm="90" flex-gt-md="80">
+            <md-card-content ng-controller="BillingCtrl">
+              <h2>Billing</h2>
+
+              <md-list>
+<!-- <md-subheader class="md-no-sticky"> 3 line item</md-subheader> -->
+                <md-list-item>
+                  <md-icon md-font-set="material-icons">credit_card</md-icon>
+                  <p>This account is billed to Visa ending in <b>6877</b></p>
+                  <md-button class="md-primary">Delete this Card</md-button>
+                </md-list-item>
+                <md-divider ></md-divider>
+                <md-list-item>
+                  <md-icon md-font-set="material-icons">credit_card</md-icon>
+                  <p>You must add a Credit Card</p>
+                  <md-button class="md-primary">Add Credit Card</md-button>
+                </md-list-item>
+                <md-divider ></md-divider>
+              </md-list>
+
+
+              <br>
+              <h2>Plans</h2>
+
+              <div layout="row" layout-padding layout-margin layout-wrap layout-fill>
+                <div class="plan" md-whiteframe="1" flex layout="column" layout-align="center center">
+                    <h3>Plan A</h3>
+                    <p>1 domain</p>
+                    <p>$5/mo.</p>
+                    <md-button class="md-primary">Used plan</md-button>
+                </div>
+                <div class="plan" md-whiteframe="1" flex layout="column" layout-align="center center">
+                  <h3>Plan B</h3>
+                  <p>3 domains</p>
+                  <p>$10/mo.</p>
+                  <md-button>Select plan</md-button>
+                </div>
+                <div class="plan" md-whiteframe="1" flex layout="column" layout-align="center center">
+                  <h3>Plan C</h3>
+                  <p>unlimited domains</p>
+                  <p>$200/mo.</p>
+                  <md-button>Select plan</md-button>
+                </div>
+              </div>
+
+              <br>
+              <h2>Previous Invoices</h2>
+
+              <md-table-container>
+                <table md-table>
+                  <thead md-head>
+                    <tr md-row>
+                      <th md-column>Month</th>
+                      <th md-column>Value</th>
+                      <th md-column>Status</th>
+                    </tr>
+                  </thead>
+                  <tbody md-body>
+                    <tr md-row>
+                      <td md-cell>January 2016</td>
+                      <td md-cell>$5</td>
+                      <td md-cell style="color:green;">Paid</td>
+                    </tr>
+                    <tr md-row>
+                      <td md-cell>December 2015</td>
+                      <td md-cell>$2.45</td>
+                      <td md-cell style="color:green;">Paid</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </md-table-container>
+
 
             </md-card-content>
           </md-card>
