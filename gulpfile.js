@@ -3,6 +3,7 @@ var mainBowerFiles = require('main-bower-files');
 var prompt = require('gulp-prompt');
 var ghPages = require('gulp-gh-pages');
 var concat = require('gulp-concat');
+var minify = require('gulp-minify');
 var uglify = require('gulp-uglify');
 
 
@@ -18,7 +19,9 @@ gulp.task('head', function () {
 
 gulp.task('bower', function() {
     return gulp.src(mainBowerFiles(), { base: './vendor' })
-      //  .pipe(uglify())
+        // .pipe(uglify().on('error', function (e) {
+        //   console.log('\x07',e.message); return this.end();
+        // }))
         .pipe(gulp.dest('./dist/vendor'))
 });
 
