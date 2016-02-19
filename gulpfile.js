@@ -37,7 +37,7 @@ gulp.task('views', function() {
 });
 
 gulp.task('root', function() {
-    return gulp.src(['./index.html', './helper.js', './lb-services.js', './app.js'])
+    return gulp.src(['./index.html', './helper.js', './lb-services.js', './app.js', './404.html'])
         .pipe(gulp.dest('./dist'))
 });
 
