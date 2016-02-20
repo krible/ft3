@@ -3,7 +3,7 @@ var mainBowerFiles = require('main-bower-files');
 var prompt = require('gulp-prompt');
 var ghPages = require('gulp-gh-pages');
 var concat = require('gulp-concat');
-var minify = require('gulp-minify');
+var minify = require('gulp-minify-css');
 var uglify = require('gulp-uglify');
 
 
@@ -19,9 +19,18 @@ gulp.task('head', function () {
 
 gulp.task('bower', function() {
     return gulp.src(mainBowerFiles(), { base: './vendor' })
-        // .pipe(uglify().on('error', function (e) {
-        //   console.log('\x07',e.message); return this.end();
-        // }))
+        .pipe(gulp.dest('./dist/vendor'))
+});
+
+gulp.task('bowerjs', function() {
+    return gulp.src('./dist/vendor/**/*.js' )
+        .pipe(uglify())
+        .pipe(gulp.dest('./dist/vendor'))
+});
+
+gulp.task('bowercss', function() {
+    return gulp.src('./dist/vendor/**/*.css' )
+        .pipe(minify())
         .pipe(gulp.dest('./dist/vendor'))
 });
 
@@ -61,7 +70,7 @@ gulp.task('tilda', function() {
 });
 
 // The default task (called when you run `gulp` from cli)
-gulp.task('buld', ['head', 'bower', 'controllers', 'css', 'images', 'js', 'views', 'tilda', 'root']);
+gulp.task('buld', ['head', 'bower', 'bowerjs', 'bowercss', 'controllers', 'css', 'images', 'js', 'views', 'tilda', 'root']);
 
 
 gulp.task('default', ['buld'], function() {
