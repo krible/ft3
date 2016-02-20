@@ -33,7 +33,7 @@ angular
 
 
   }])
-  .controller('DashboardCtrl', ['$scope', 'Auth', '$state', '$http', 'Account', 'Site', 'Config', 'Log', '$location', function($scope, Auth, $state, $http,  Account, Site, Config, Log, $location) {
+  .controller('DashboardCtrl', ['$scope', 'Auth', '$state', '$http', 'Account', 'Site', 'Config', 'Log', '$location', '$mdToast', '$mdDialog', 'util', function($scope, Auth, $state, $http,  Account, Site, Config, Log, $location, $mdToast, $mdDialog, util) {
 
     $scope.$watch(Auth.isLoggedIn, function(newData, prevData) {
       if (!newData) {
@@ -63,6 +63,10 @@ angular
         $location.hash(hash);
       };
 
+
+      $scope.showToast = function(text) {
+        $mdToast.show($mdToast.simple().position('top right').hideDelay(5000).textContent(text));
+      };
 
       $scope.config = {};
       $scope.logs = null;
@@ -134,6 +138,28 @@ angular
           .finally(function() {
             console.log("always called")
           });
+      };
+
+
+      $scope.addSite = function () {
+        util.CreateSite(Site, Config, $scope.currentUser.id, function (res) {
+          $state.reload();
+        });
+      };
+
+      $scope.deleteSite = function (site, ev) {
+        var confirm = $mdDialog.confirm()
+              .title('Would you like to delete '+ site.domain +'?')
+              .textContent('All settings for   be destroyed.')
+              .targetEvent(ev)
+              .ok('Yes')
+              .cancel('Oh, no!');
+        $mdDialog.show(confirm).then(function() {
+          util.DeleteSite(Site, Config, $scope.currentUser.id, site, function (res) {
+            $state.reload();
+          });
+        });
+
       };
 
 

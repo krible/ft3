@@ -24,14 +24,17 @@
 
   <md-content flex md-scroll-y>
     <ui-view layout="column" layout-fill layout-padding>
-      <div class="inset" hide-sm></div>
+
       <ng-switch on="tab.selectedIndex" class="tabpanel-container">
-        <div ng-repeat="site in sites" role="tabpanel" id="tab1-content" aria-labelledby="tab1" ng-switch-when="0" md-swipe-left="next()" md-swipe-right="previous()" layout="row" layout-align="center center">
-          <md-card flex="50" flex-md="75" flex-xs="100" flex-sm="90">
-            <md-card-content >
+        <md-button ng-click="addSite()" class="addbut md-fab md-primary" aria-label="Add">
+          <md-tooltip md-direction="left">Add site</md-tooltip>
+          +</md-button>
+        <div ng-repeat="site in sites | orderBy: '-created'" role="tabpanel" id="tab1-content" aria-labelledby="tab1" ng-switch-when="0" md-swipe-left="next()" md-swipe-right="previous()" layout="row" layout-align="center center">
+          <md-card flex="50" flex-md="70" flex-sm="90" flex-xs="100">
+            <md-card-content>
               <div layout="row" layout-align="right">
                 <div flex="80">
-                  <h2 style="padding:10px 0px;">Edit widget settings for {{site.domain}}</h2>
+                  <h2 style="padding:10px 0px;">{{site.domain || 'My Site'}}</h2>
                 </div>
                 <div flex="20">
                   <md-switch ng-model="site.status">
@@ -44,7 +47,7 @@
                     <p class="md-caption">Get this code to HTML-template of your site</p><br>
                     <pre class="md-caption code_source">{{code[site.id]}}</pre>
                     <div flex style="text-align:right;">
-                      <md-button class="md-raised" ngclipboard data-clipboard-text="{{code[site.id]}}">Copy to Clipboard</md-button>
+                      <md-button class="md-raised" ng-click="showToast('Paste copied code into your website source code');" ngclipboard data-clipboard-text="{{code[site.id]}}">Copy to Clipboard</md-button>
                     </div>
 
                   <md-input-container class="md-block">
@@ -84,7 +87,8 @@
                     <textarea ng-model="config[site.id].about" md-maxlength="150" rows="5" md-select-on-focus></textarea>
                   </md-input-container>
 
-                  <md-button class="md-raised md-primary" ng-click="saveConfig(site.id)">Save</md-button>
+                  <md-button class="md-raised md-primary" ng-click="[showToast('Settings saved'), saveConfig(site.id)]">Save</md-button>
+                  <md-button class="md-raised" ng-click="[deleteSite(site, $event)]">Delete</md-button>
             </md-card-content>
           </md-card>
         </div>

@@ -45,7 +45,7 @@ app
     CreateSite: function (Site, Config, accountId, cb) {
 
       var data = {
-        "domain": "www.mysite.com",
+        "domain": "New website",
         "status": true,
         "accountId": accountId
       }
@@ -59,6 +59,28 @@ app
         .then(function(res) {
           console.log('Create site: ',res);
           util.CreateConf(Config, res.id, cb);
+        });
+      }
+
+    },
+
+    DeleteSite: function (Site, Config, accountId, site, cb) {
+      var util = this;
+
+      if (accountId) {
+        Site.configs
+        .destroyById(site)
+        .$promise
+        .then(function(res) {
+          console.log('Site config deleted: ',res);
+        });
+
+        Site
+        .destroyById(site)
+        .$promise
+        .then(function(res) {
+          console.log('Site deleted: ',res);
+          cb(true);
         });
       }
 
