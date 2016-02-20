@@ -162,6 +162,50 @@ angular
 
       };
 
+      $scope.createPayment = function() {
+          var amount = 1;
+          if (isNaN(amount) || amount < 1) {
+            $scope.error = 'Minimal payment is 1$';
+            setTimeout(function() {
+              $scope.error = null;
+            }, 5000);
+            return;
+          }
+          console.log(Auth.currentUser);
+          var widget = new cp.CloudPayments({language: "en-US"});
+          widget.charge({ // options
+              publicId: 'pk_445006d7564e395c81ff228c52e61',  //id из личного кабинета
+              description: 'FT3 payment', //назначение
+              amount: amount, //сумма
+              currency: 'USD', //валюта
+              accountId: Auth.currentUser.id, //идентификатор плательщика (необязательно)\
+              data: {
+                clientEmail: Auth.currentUser.email
+              }
+            },
+            function (options) { // success
+              //действие при успешной оплате
+              console.log('Payment complete!!', options);
+              savePaymentLog({
+                amount: options.amount,
+                success: true,
+                additionalInfo: options
+              });
+            },
+            function (reason, options) { // fail
+              //действие при неуспешной оплате
+              console.log('Something wrong((', reason, options);
+              if (reason != 'User has cancelled') {
+                savePaymentLog({
+                  amount: options.amount,
+                  success: false,
+                  additionalInfo: {reason: reason, options: options}
+                });
+              }
+            });
+        };
+
+
 
       $scope.logout = function () {
         Auth.logout();

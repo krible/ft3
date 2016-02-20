@@ -128,19 +128,20 @@
         <div role="tabpanel" id="tab3-content" aria-labelledby="tab3" ng-switch-when="2" md-swipe-left="next()" md-swipe-right="previous()" layout="row" layout-align="center center">
           <md-card flex-gt-sm="90" flex-gt-md="80">
             <md-card-content ng-controller="BillingCtrl">
+              <script src="https://widget.cloudpayments.ru/bundles/cloudpayments"></script>
               <h2>Billing</h2>
 
               <md-list>
-                <md-list-item>
+                <md-list-item ng-if="account.card">
                   <p class="md-body-1"><md-icon md-font-set="material-icons">credit_card</md-icon> This account is billed to Visa ending in <b>6877</b></p>
                   <md-button class="md-primary">Delete this Card</md-button>
+                  <md-divider ></md-divider>
                 </md-list-item>
-                <md-divider ></md-divider>
                 <md-list-item>
                   <p class="md-body-1"><md-icon md-font-set="material-icons">credit_card</md-icon> You must add a Credit Card</p>
-                  <md-button class="md-primary">Add Credit Card</md-button>
+                  <md-button ng-click="createPayment();" class="md-primary">Add Credit Card</md-button>
+                  <md-divider ></md-divider>
                 </md-list-item>
-                <md-divider ></md-divider>
               </md-list>
 
 
