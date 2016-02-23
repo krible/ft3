@@ -30,7 +30,7 @@ var app = angular
         url: '/',
         views: {
           "commonView": {
-            templateUrl: "tilda/index.html"
+            templateUrl: "tilda/views/index.html"
           },
 
         }
@@ -39,7 +39,7 @@ var app = angular
         url: '/features',
         views: {
           "commonView": {
-            templateUrl: "tilda/features.html"
+            templateUrl: "tilda/views/features.html"
           }
         }
       })
@@ -47,7 +47,7 @@ var app = angular
         url: '/plans',
         views: {
           "commonView": {
-            templateUrl: "tilda/plans.html"
+            templateUrl: "tilda/views/plans.html"
           }
         }
       })
@@ -55,7 +55,7 @@ var app = angular
         url: '/privacy',
         views: {
           "commonView": {
-            templateUrl: "tilda/privacy.html"
+            templateUrl: "tilda/views/privacy.html"
           }
         }
       })
@@ -63,7 +63,7 @@ var app = angular
         url: '/terms',
         views: {
           "commonView": {
-            templateUrl: "tilda/terms.html"
+            templateUrl: "tilda/views/terms.html"
           }
         }
       })
@@ -89,7 +89,7 @@ var app = angular
         url: '/signup',
         views: {
           "commonView": {
-            templateUrl: "tilda/signup.html"
+            templateUrl: "tilda/views/signup.html"
           }
         }
       })
@@ -97,7 +97,7 @@ var app = angular
         url: '/login',
         views: {
           "commonView": {
-            templateUrl: "tilda/login.html"
+            templateUrl: "tilda/views/login.html"
           }
         }
       })
