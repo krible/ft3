@@ -1,5 +1,2 @@
-
-node_modules
-vendor
-dist/*
-.publish
+.idea
+.tmp
