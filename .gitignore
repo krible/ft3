@@ -1,2 +1,6 @@
 .idea
 .tmp
+.publish/
+dist/
+node_modules/
+vendor/

@@ -138,7 +138,7 @@ var app = angular
         }
       });
     $urlRouterProvider.otherwise('/');
-  //  $locationProvider.html5Mode({ enabled: true, requireBase: false });
+    $locationProvider.html5Mode({ enabled: true, requireBase: false });
   }])
   .factory('Auth', ['Account', '$q', '$state', '$rootScope', 'LoopBackAuth', function(User, $q, $state,
     $rootScope, LoopBackAuth) {
