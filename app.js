@@ -16,8 +16,8 @@ var app = angular
     // Use a custom auth header instead of the default 'Authorization'
     LoopBackResourceProvider.setAuthHeader('X-Access-Token');
     // Change the URL where to access the LoopBack REST API server
-    //LoopBackResourceProvider.setUrlBase('http://ft3.herokuapp.com/api');
-    LoopBackResourceProvider.setUrlBase('http://ft3.local/api');
+    LoopBackResourceProvider.setUrlBase('http://ft3.herokuapp.com/api');
+    //LoopBackResourceProvider.setUrlBase('http://ft3.local/api');
 
     $mdThemingProvider
     .theme('default')
