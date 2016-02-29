@@ -80,7 +80,7 @@ var app = angular
         url: '/sign',
         views: {
           "authView": {
-            templateUrl: "tilda/views/sign.html",
+            templateUrl: "tilda/sign.html",
             controller: 'SignupCtrl'
           }
         }
@@ -89,7 +89,7 @@ var app = angular
         url: '/auth',
         views: {
           "authView": {
-            templateUrl: "tilda/views/auth.html",
+            templateUrl: "tilda/auth.html",
             controller: 'AuthCtrl'
           }
         }
