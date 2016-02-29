@@ -10,6 +10,7 @@ angular
 
   }])
   .controller('AuthCtrl', ['$scope', '$state', 'Auth', 'util', function($scope, $state, Auth, util) {
+    console.log("AUTH!!!!!");
 
     $scope.login = function () {
       util.Login(Auth, $scope.account, $state, function () {

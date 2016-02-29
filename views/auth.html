@@ -7,7 +7,7 @@
   #sign { margin-top: 100px; }
 </style>
 
-<ng-include src="'tilda/header.html'"></ng-include>
+<ng-include src="'views/header.html'"></ng-include>
 
 <div layout="row" layout-align="center center" style="border:1px slid red;">
 
@@ -28,8 +28,8 @@
  </form>
  <md-card-footer layout="row" layout-xs="column">
    <md-button ng-click="login();" class="md-raised md-primary">Login</md-button>
-   <div class="auth-div">OR</div>
-   <md-button ng-click="login();" class="md-raised">
+   <!-- <div class="auth-div">OR</div>
+   <md-button ng-href="login();" class="md-raised">
      <md-icon md-svg-icon="images/facebook-icon.svg"></md-icon>
      Facebook
    </md-button>
@@ -40,7 +40,7 @@
    <md-button ng-click="login();" class="md-raised">
      <md-icon md-svg-icon="images/twitter-icon.svg"></md-icon>
      Twitter
-   </md-button>
+   </md-button> -->
  </md-card-footer>
 </md-card>
 

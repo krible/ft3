@@ -16,7 +16,8 @@ var app = angular
     // Use a custom auth header instead of the default 'Authorization'
     LoopBackResourceProvider.setAuthHeader('X-Access-Token');
     // Change the URL where to access the LoopBack REST API server
-    LoopBackResourceProvider.setUrlBase('http://ft3.herokuapp.com/api');
+    //LoopBackResourceProvider.setUrlBase('http://ft3.herokuapp.com/api');
+    LoopBackResourceProvider.setUrlBase('http://ft3.local/api');
 
     $mdThemingProvider
     .theme('default')
@@ -138,7 +139,7 @@ var app = angular
         }
       });
     $urlRouterProvider.otherwise('/');
-    $locationProvider.html5Mode({ enabled: true, requireBase: false });
+  //  $locationProvider.html5Mode({ enabled: true, requireBase: false });
   }])
   .factory('Auth', ['Account', '$q', '$state', '$rootScope', 'LoopBackAuth', function(User, $q, $state,
     $rootScope, LoopBackAuth) {
