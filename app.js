@@ -68,6 +68,14 @@ var app = angular
           }
         }
       })
+      .state('contact', {
+        url: '/contact',
+        views: {
+          "commonView": {
+            templateUrl: "tilda/views/contact.html"
+          }
+        }
+      })
       .state('sign', {
         url: '/sign',
         views: {
