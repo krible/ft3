@@ -12,7 +12,7 @@ $(function() {
     if($isMobile == true){
         var correctHeight = function(){
         	//covers
-            var coverCarries = document.body.querySelectorAll('.cover_carrier'),
+            var coverCarries = document.body.querySelectorAll('.t-cover__carrier'),
                 viewPortHeight = $(window).height(),
                 factor = 0;
             for(var i= 0, l = coverCarries.length, cc , ccStyle, newHeight, parent, opacityLayer, textBox; i < l; i++){
@@ -21,10 +21,10 @@ $(function() {
                 if(ccStyle.height.indexOf('vh') > -1){
                     factor = parseInt(ccStyle.height) / 100;
                     newHeight = viewPortHeight + 'px';
-                    parent = $(cc).parent('.cover');
+                    parent = $(cc).parent('.t-cover');
                     if(parent && (parent = parent[0])){
-                        opacityLayer = parent.querySelector('.filteropacity');
-                        textBox = parent.querySelector('.centeredVerticallyBlock');
+                        opacityLayer = parent.querySelector('.t-cover__filter');
+                        textBox = parent.querySelector('.t-cover__wrapper');
                         if (opacityLayer) {
                             opacityLayer.style.height = newHeight;
                         }
@@ -45,7 +45,7 @@ $(function() {
                 if(ccStyle.height.indexOf('vh') > -1){
                     factor = parseInt(ccStyle.height) / 100;
                     newHeight = viewPortHeight + 'px';
-                    parent = $(cc).parent('.cover');
+                    parent = $(cc).parent('.t-cover');
                     ccStyle.height = newHeight;
                 }                 
             }
@@ -511,14 +511,14 @@ $(function() {
             }
             
             //fix content height
-            var hcover=$("#rec" + id).find(".cover").height();
+            var hcover=$("#rec" + id).find(".t-cover").height();
             var hcontent=$("#rec" + id).find("div[data-hook-content]").height();
             if(hcontent>300 && hcover<hcontent){
             	var hcontent=hcontent+100;            
-            	$("#rec" + id).find(".cover").height(hcontent);
-            	$("#rec" + id).find(".filteropacity").height(hcontent);
-            	$("#rec" + id).find(".cover_carrier").height(hcontent);
-            	$("#rec" + id).find(".centeredVerticallyBlock").height(hcontent);
+            	$("#rec" + id).find(".t-cover").height(hcontent);
+            	$("#rec" + id).find(".t-cover__filter").height(hcontent);
+            	$("#rec" + id).find(".t-cover__carrier").height(hcontent);
+            	$("#rec" + id).find(".t-cover__wrapper").height(hcontent);
             }   
             
             // if set video
@@ -689,7 +689,7 @@ $(function() {
 	}
 	
     $(document).ready(function(){	
-    	$(".cover_carrier").each(function() {
+    	$(".t-cover__carrier").each(function() {
 			var id=$(this).attr('data-content-cover-id');
 			if(id>0)cover_init(id);
 		});	
@@ -1030,4 +1030,38 @@ $(document).ready(function(){
         blocksfade();
     }
 });
+
+
+function blocksdisplay(){
+	var window_width = $(window).width();    
+    var recs = $('div.r[data-screen-max], div.r[data-screen-min]');
+    var max,min;
+    var disp;
+    recs.each(function(i) {
+        disp = $(this).css("display");                     
+        max = $(this).attr("data-screen-max");
+        if( max === undefined)max=10000;
+        max = parseInt(max);
+        
+        min = $(this).attr("data-screen-min");
+        if( min === undefined)min=0;
+        min = parseInt(min);
+        console.log(min+"-"+max);
+        if(min<=max){
+            if (window_width <= max && window_width > min) {
+            	if(disp!="block")$(this).css("display","block");	            	
+            }else{
+            	if(disp!="none")$(this).css("display","none");	            
+            }
+        }
+    });
+}
+
+$(document).ready(function(){
+	blocksdisplay();
+});
+
+$(window).resize(function() {
+	blocksdisplay();
+});    
 
