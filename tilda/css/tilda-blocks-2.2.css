@@ -1135,35 +1135,6 @@
 .ya-share2 ul {
   padding-left: 0px !important;
 }
-.t107 {
-  text-align: center;
-}
-.t107 .centeredContainer {
-  text-align: center;
-}
-.t107 .widthauto {
-  width: auto;
-  max-width: 100%;
-  vertical-align: middle;
-}
-.t107 .lr_width_col_6,
-.t107 .lr_width_col_7,
-.t107 .lr_width_col_8,
-.t107 .lr_width_col_9,
-.t107 .lr_width_col_10,
-.t107 .lr_width_col_11,
-.t107 .lr_width_col_12,
-.t107 .lr_width_col_100 {
-  vertical-align: middle;
-}
-.t107 .title {
-  font-family: 'Open Sans', serif;
-  color: #000000;
-  padding-top: 28px;
-  padding-bottom: 28px;
-  font-size: 14px;
-  line-height: 28px;
-}
 .t001-wrapper {
   padding-top: 42px;
   padding-bottom: 42px;
@@ -1232,29 +1203,6 @@
 }
 .t017-descr {
   padding-top: 21px;
-}
-.t030 .centeredSection {
-  text-align: center;
-}
-.t030 .leftSection {
-  text-align: left;
-}
-.t030 .rightSection {
-  text-align: right;
-}
-.t030-title {
-  font-weight: 300;
-  margin-bottom: 15px;
-}
-.t030-descr {
-  margin-top: 8px;
-  padding-bottom: 6px;
-  font-weight: 300;
-}
-.t046 .text-xs {
-  text-align: center;
-  padding-top: 10px;
-  padding-bottom: 4px;
 }
 .t075 .alignleft {
   text-align: left;

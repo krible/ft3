@@ -70,7 +70,7 @@ gulp.task('tilda', function() {
 });
 
 // The default task (called when you run `gulp` from cli)
-gulp.task('buld', ['head', 'bower', 'bowerjs', 'bowercss', 'controllers', 'css', 'images', 'js', 'views', 'tilda', 'root']);
+gulp.task('buld', ['head', 'bower', 'bowerjs', 'bowercss', 'controllers', 'css', 'images', 'js', 'views', 'root']);
 
 
 gulp.task('default', ['buld'], function() {

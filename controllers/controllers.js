@@ -23,13 +23,13 @@ angular
 
     $scope.account = {
       'email': '',
-      'password1': '',
-      'password2': '',
+      'password': '',
+      //'password2': '',
       'termsUse': ''
     };
 
     $scope.signUp = function () {
-      util.SignUp(Auth, Account, Site, Config, $scope.account, $state);
+      util.SignUp(Auth, Account, Site, Config, $scope.account, $state, $mdToast);
     };
 
 

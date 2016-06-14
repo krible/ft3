@@ -12,12 +12,12 @@ app
 
     },
 
-    SignUp: function (Auth, Account, Site, Config, account, $state) {
+    SignUp: function (Auth, Account, Site, Config, account, $state, $mdToast) {
 
-      if (account.password1.length > 5 && account.password1 === account.password2) {
+      if (account.password.length > 5) {
         user = {
           email: account.email,
-          password: account.password1,
+          password: account.password,
           partnerId: '56c347380ac79503000b34b0',
           realm: 'test'
         };
@@ -27,15 +27,21 @@ app
         Account
         .create(user)
         .$promise
-        .then(function(res) {
+        .then(
+          function(res) {
           console.log('Create account: ', res);
           util.Login(Auth, user, $state, function () {
             util.CreateSite(Site, Config, res.id, function () {
               $state.go('dashboard');
             });
           });
-
-
+        },
+        function(error){
+          console.log('FAIL',error);
+          if (error.data.error.status == 422) {
+            console.log('FAIL',error.data.error.message);
+            $mdToast.show($mdToast.simple().position('bottom right').hideDelay(5000).textContent(error.data.error.message));
+          }
         });
 
       }
