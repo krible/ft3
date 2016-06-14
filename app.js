@@ -76,6 +76,14 @@ var app = angular
           }
         }
       })
+      .state('tour', {
+        url: '/tour',
+        views: {
+          "commonView": {
+            templateUrl: "tilda/views/tour.html"
+          }
+        }
+      })
       .state('sign', {
         url: '/sign',
         views: {
